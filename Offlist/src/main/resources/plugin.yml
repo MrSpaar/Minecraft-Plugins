@@ -1,0 +1,19 @@
+name: Offlist
+version: '${version}'
+main: ci.offlist.Offlist
+api-version: 1.19
+
+authors: [ MrSpaar ]
+description: Gérer la whitelist d'un serveur en mode offline
+website: https://github.com/MrSpaar
+
+commands:
+  offlist:
+    description: "Gérer la whitelist d'un serveur en mode offline"
+    usage: "/<command> [add/remove] [...pseudos]"
+    permission: offlist.offlist
+
+permissions:
+  offlist.*:
+    description: Accès à toutes les commandes du plugin Offlist
+    default: op

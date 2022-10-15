@@ -1,0 +1,16 @@
+name: Worldspawn
+version: '${version}'
+main: ci.worldspawn.Worldspawn
+
+api-version: 1.19
+authors: [ MrSpaar ]
+description: Permet de se téléporter au lobby ou au spawn de son monde
+website: https://github.com/MrSpaar
+
+commands:
+  lobby:
+    description: Se téléporter au lobby du serveur
+    usage: /<command>
+  spawn:
+    description: Se téléporter au spawn de son monde
+    usage: /<command>
