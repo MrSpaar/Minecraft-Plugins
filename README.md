@@ -20,6 +20,8 @@ Ce plugin permet d'avoir un `/spawn` spécifique à chaque monde.
 
 # ⚽ [PolyEvents](./PolyEvents)
 
+Ce plugin permet de créer des évènements (WIP).
+
 | Commande | Arguments | Description                                                       |
 |----------|-----------|-------------------------------------------------------------------|
 | create   | \<nom>    | Crée un évènement à la position du joueur                         |
