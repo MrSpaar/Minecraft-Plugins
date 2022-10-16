@@ -4,7 +4,7 @@ main: ci.worldspawn.Worldspawn
 
 api-version: 1.19
 authors: [ MrSpaar ]
-description: Permet de se téléporter au lobby ou au spawn de son monde
+description: Plugin permettant de se téléporter au lobby du serveur ou au spawn de son monde
 website: https://github.com/MrSpaar
 
 commands:
@@ -12,5 +12,5 @@ commands:
     description: Se téléporter au lobby du serveur
     usage: /<command>
   spawn:
-    description: Se téléporter au spawn de son monde
+    description: Se téléporter au spawn du monde courant
     usage: /<command>

@@ -4,14 +4,18 @@ main: ci.offlist.Offlist
 api-version: 1.19
 
 authors: [ MrSpaar ]
-description: Gérer la whitelist d'un serveur en mode offline
+description: Plugin pour gérer la whitelist d'un serveur en mode offline
 website: https://github.com/MrSpaar
 
 commands:
   offlist:
-    description: "Gérer la whitelist d'un serveur en mode offline"
-    usage: "/<command> [add/remove] [...pseudos]"
+    description: Gérer la whitelist du serveur
+    usage: |
+      Comment utiliser la commande Offlist :
+      /<command> add [...players] - Ajouter des joueurs à la whitelist
+      /<command> remove [...players] - Enlever des joueurs de la whitelist
     permission: offlist.offlist
+    permission-message: Tu n'as pas la permission d'utiliser cette commande
 
 permissions:
   offlist.*:
