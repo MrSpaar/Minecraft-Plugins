@@ -6,15 +6,19 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class PolyEvents extends JavaPlugin {
     @Override
     public void onEnable() {
-        PluginCommand command = getCommand("events");
+        PluginCommand eventsCommand = getCommand("events");
+        PluginCommand rezoCommand = getCommand("rezo");
 
-        if (command == null) {
-            System.out.println("Event command not found, check plugin.yml");
+        if (eventsCommand == null || rezoCommand == null) {
+            System.out.println("Plugin commands not found, check plugin.yml");
             return;
         }
 
-        command.setExecutor(new EventExecutor());
-        command.setTabCompleter(new EventCompleter());
+        eventsCommand.setExecutor(new EventExecutor());
+        eventsCommand.setTabCompleter(new EventCompleter());
+
+        rezoCommand.setExecutor(new RezoExecutor());
+        rezoCommand.setTabCompleter(new RezoCompleter());
 
         EventHandler.initDB();
     }
