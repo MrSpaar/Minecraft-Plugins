@@ -1,0 +1,19 @@
+name: PolyEvents
+version: '${version}'
+main: ci.polyevents.PolyEvents
+
+api-version: 1.19
+authors: [ MrSpaar ]
+description: Plugin de gestion d'évènements
+website: https://github.com/MrSpaar
+
+commands:
+  events:
+    description: Gérer des évènements
+    usage: |
+      Comment utiliser la commande "events"
+      /<command> join [name] - Rejoindre un évènement
+      /<command> leave [name] - Quitter un évènement
+      /<command> list - Afficher la liste des évènements en cours
+      /<command> create [name] - Créer un évènement à ta position
+      /<command> delete [name] - Supprimer un évènement
