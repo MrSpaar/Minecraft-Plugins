@@ -22,16 +22,6 @@ dependencies {
     implementation 'org.xerial:sqlite-jdbc:3.39.3.0'
 }
 
-jar {
-    manifest {
-        attributes "Main-Class": "ci.offlist.Offlist"
-    }
-
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-}
-
 def targetJavaVersion = 17
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)

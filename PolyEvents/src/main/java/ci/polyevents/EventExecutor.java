@@ -40,7 +40,7 @@ public class EventExecutor implements CommandExecutor {
                             .append("\n");
                 }
 
-                if (builder.isEmpty())
+                if (builder.length() == 23)
                     sender.sendMessage(ChatColor.RED + "Aucun évènements en cours");
                 else
                     sender.sendMessage(builder.toString());
