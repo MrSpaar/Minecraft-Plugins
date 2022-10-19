@@ -84,9 +84,9 @@ public class EventHandler {
             PreparedStatement statement = CONN.prepareStatement(sql);
 
             statement.setString(1, displayName);
-            statement.setString(2, world);
-            statement.setString(3, location);
-            statement.setString(4, eventId);
+            statement.setString(2, eventId);
+            statement.setString(3, world);
+            statement.setString(4, location);
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -102,7 +102,7 @@ public class EventHandler {
             statement.setString(1, eventId);
             statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error deleting event " + eventId);
+            Bukkit.getLogger().log(Level.SEVERE, "Error deleting event " + eventId);
         }
     }
 
@@ -142,11 +142,13 @@ public class EventHandler {
 
             String sql2 = """
                     CREATE TABLE IF NOT EXISTS players (
-                        display_name text NOT NULL,
+                        display_name text,
+                        event_id text,
                         world text NOT NULL,
                         location text NOT NULL,
-                        event_id text NOT NULL REFERENCES events(event_id),
+                        
                         PRIMARY KEY (display_name, event_id)
+                        FOREIGN KEY (event_id) REFERENCES events(event_id) ON DELETE CASCADE
                     )
                     """;
 

@@ -37,10 +37,13 @@ public class EventExecutor implements CommandExecutor {
                             .append(ChatColor.ITALIC)
                             .append(ChatColor.AQUA)
                             .append(events.getString("description"))
-                            .append("\n.");
+                            .append("\n");
                 }
 
-                sender.sendMessage(builder.toString());
+                if (builder.isEmpty())
+                    sender.sendMessage(ChatColor.RED + "Aucun évènements en cours");
+                else
+                    sender.sendMessage(builder.toString());
             } catch (SQLException e) {
                 Bukkit.getLogger().log(Level.SEVERE, "Error while listing events");
             }
@@ -74,7 +77,7 @@ public class EventExecutor implements CommandExecutor {
                         player.getServer().getWorld(event.getString("world")),
                         Double.parseDouble(coords[0]),
                         Double.parseDouble(coords[1]),
-                        Double.parseDouble(coords[3])
+                        Double.parseDouble(coords[2])
                 ));
 
                 player.sendMessage(ChatColor.GREEN + "Tu as rejoint l'évènement \"" + args[1] + "\"");
@@ -127,8 +130,8 @@ public class EventExecutor implements CommandExecutor {
             Location location = player.getLocation();
             StringBuilder description = new StringBuilder();
 
-            for (int i=1; i<args.length; i++)
-                description.append(args[i]);
+            for (int i=2; i<args.length; i++)
+                description.append(args[i]).append(" ");
 
             EventHandler.createEvent(
                     args[1],
@@ -137,6 +140,7 @@ public class EventExecutor implements CommandExecutor {
                     description.toString());
 
             player.sendMessage(ChatColor.GREEN + "L'évènement \"" + args[1] + "\" a été créé");
+            return true;
         }
 
         return false;
