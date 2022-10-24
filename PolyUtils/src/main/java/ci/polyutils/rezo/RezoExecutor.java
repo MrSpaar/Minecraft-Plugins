@@ -15,24 +15,40 @@ public class RezoExecutor implements CommandExecutor {
         if (args.length == 0)
             return false;
 
-        Player player = (Player) sender;
-        Scoreboard scoreboard = player.getScoreboard();
-
-        if (scoreboard.getPlayerTeam(player) != null) {
-            player.sendMessage(ChatColor.RED + "Tu fais déjà partie d'une ville, si c'est la mauvaise, contacte un modérateur ;)");
+        if (args[0].equals("rules")) {
+            sender.sendMessage(ChatColor.BOLD + "<Rules Link>");
             return true;
         }
 
-        Team team = scoreboard.getTeam(args[0]);
-
-        if (team == null) {
-            player.sendMessage(ChatColor.RED + "La ville \"" + args[0] + "\" est introuvable");
+        if (args[0].equals("recap")) {
+            sender.sendMessage("<Command Recap>");
             return true;
         }
 
-        team.addPlayer(player);
-        player.sendMessage(ChatColor.GREEN + "Tu as rejoint la ville \"" + args[0] + "\"");
+        if (args.length < 2)
+            return false;
 
-        return true;
+        if (args[0].equals("join")) {
+            Player player = (Player) sender;
+            Scoreboard scoreboard = player.getScoreboard();
+
+            if (scoreboard.getPlayerTeam(player) != null) {
+                player.sendMessage(ChatColor.RED + "Tu fais déjà partie d'une ville, si c'est la mauvaise, contacte un modérateur ;)");
+                return true;
+            }
+
+            Team team = scoreboard.getTeam(args[1]);
+
+            if (team == null) {
+                player.sendMessage(ChatColor.RED + "La ville \"" + args[1] + "\" est introuvable");
+            } else {
+                team.addPlayer(player);
+                player.sendMessage(ChatColor.GREEN + "Tu as rejoint la ville \"" + args[1] + "\"");
+            }
+
+            return true;
+        }
+
+        return false;
     }
 }
