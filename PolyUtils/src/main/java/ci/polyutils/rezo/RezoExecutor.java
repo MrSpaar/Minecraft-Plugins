@@ -1,4 +1,4 @@
-package ci.polyevents;
+package ci.polyutils.rezo;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

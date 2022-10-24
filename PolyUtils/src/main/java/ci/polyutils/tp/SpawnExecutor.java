@@ -1,4 +1,4 @@
-package ci.worldspawn;
+package ci.polyutils.tp;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

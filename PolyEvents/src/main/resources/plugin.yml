@@ -16,9 +16,3 @@ commands:
       /<command> leave [name] - Quitter un évènement
       /<command> list - Afficher la liste des évènements en cours
       /<command> create [name] - Créer un évènement à ta position
-      /<command> delete [name] - Supprimer un évènement
-  rezo:
-    description: Rejoindre le groupe de sa ville
-    usage: |
-      Comment utiliser la commande "rezo"
-      /<command> [ville] - Rejoindre le groupe de sa ville

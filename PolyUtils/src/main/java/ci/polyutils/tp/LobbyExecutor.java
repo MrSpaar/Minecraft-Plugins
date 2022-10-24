@@ -1,4 +1,4 @@
-package ci.worldspawn;
+package ci.polyutils.tp;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

@@ -1,0 +1,23 @@
+name: PolyUtils
+version: '${version}'
+main: ci.polyutils.PolyUtils
+api-version: 1.19
+
+authors: [ MrSpaar ]
+description: Plugin d'utilitaires pour le serveur PolyCraft
+website: https://github.com/MrSpaar
+
+commands:
+  lobby:
+    description: Se téléporter au lobby du serveur
+    usage: /<command>
+  spawn:
+    description: Se téléporter au spawn du monde courant
+    usage: /<command>
+  rezo:
+    description: Commandes liées au rézo
+    usage: |
+      Comment utiliser la commande "rezo"
+      /<command> join [ville] - Rejoindre le groupe de sa ville
+      /<command> rules - Avoir un lien vers les règles du serveur
+      /<command> recap - Avoir un récapitulatif des commandes importantes
