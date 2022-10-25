@@ -1,7 +1,7 @@
 package ci.polyutils;
 
-import ci.polyutils.rezo.*;
 import ci.polyutils.tp.*;
+import ci.polyutils.rezo.*;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.plugin.java.JavaPlugin;

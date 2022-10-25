@@ -16,8 +16,4 @@ commands:
     usage: /<command>
   rezo:
     description: Commandes liées au rézo
-    usage: |
-      Comment utiliser la commande "rezo"
-      /<command> join [ville] - Rejoindre le groupe de sa ville
-      /<command> rules - Avoir un lien vers les règles du serveur
-      /<command> recap - Avoir un récapitulatif des commandes importantes
+    usage: /<command> join [ville] - Rejoindre le groupe de sa ville
