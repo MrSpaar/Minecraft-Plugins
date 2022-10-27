@@ -1,6 +1,7 @@
 package ci.polyutils.rezo;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,10 +16,10 @@ public class RezoExecutor implements CommandExecutor {
         if (args.length < 2)
             return false;
 
-        if (!args[0].equals("join"))
+        if (!args[0].equals("join") || !(sender instanceof Player player))
             return false;
 
-        Player player = (Player) sender;
+        Server server = player.getServer();
         Scoreboard scoreboard = player.getScoreboard();
 
         if (scoreboard.getPlayerTeam(player) != null) {
@@ -32,6 +33,8 @@ public class RezoExecutor implements CommandExecutor {
             player.sendMessage(ChatColor.RED + "La ville \"" + args[1] + "\" est introuvable");
         } else {
             team.addPlayer(player);
+            server.dispatchCommand(server.getConsoleSender(), "rg addmember " + args[1] + " " + player.getName());
+
             player.sendMessage(ChatColor.GREEN + "Tu as rejoint la ville \"" + args[1] + "\"");
         }
 
