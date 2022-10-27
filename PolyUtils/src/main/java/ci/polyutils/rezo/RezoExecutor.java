@@ -23,7 +23,7 @@ public class RezoExecutor implements CommandExecutor {
         Scoreboard scoreboard = player.getScoreboard();
 
         if (scoreboard.getPlayerTeam(player) != null) {
-            player.sendMessage(ChatColor.RED + "Tu fais déjà partie d'une ville, si c'est la mauvaise, contacte un modérateur ;)");
+            player.sendMessage(ChatColor.RED + "Tu fais déjà partie d'une ville, contacte un modérateur en cas d'erreur ;)");
             return true;
         }
 
