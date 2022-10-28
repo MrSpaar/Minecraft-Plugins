@@ -59,10 +59,10 @@ public class EventExecutor implements CommandExecutor {
 
             ResultSet event = DBHandler.getEvent(args[1]);
 
-            if (event == null)
-                return PolyEvents.errorOut(sender, "L'évènement \"" + args[1] + "\" n'existe pas");
-
             try {
+                if (event == null || !event.next())
+                    return PolyEvents.errorOut(sender, "L'évènement \"" + args[1] + "\" n'existe pas");
+
                 String[] coords = event.getString("location").split(" ");
                 Location loc = player.getLocation();
 
@@ -94,10 +94,10 @@ public class EventExecutor implements CommandExecutor {
 
             ResultSet event = DBHandler.getPlayerByEvent(args[1], player.getName());
 
-            if (event == null)
-                return PolyEvents.errorOut(sender, "Tu n'as pas rejoint l'évènement \"" + args[1] + "\"");
-
             try {
+                if (event == null || !event.next())
+                    return PolyEvents.errorOut(sender, "Tu n'as pas rejoint l'évènement \"" + args[1] + "\"");
+
                 String[] coords = event.getString("location").split(" ");
 
                 player.teleport(new Location(

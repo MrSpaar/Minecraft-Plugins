@@ -17,7 +17,7 @@ public class EventCompleter implements TabCompleter {
     @Nullable
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (args.length == 1 && sender.isOp()) return List.of("list", "join", "leave", "create", "delete", "give");
+        if (args.length == 1 && sender.isOp()) return List.of("list", "join", "leave", "create", "delete");
         if (args.length == 1) return List.of("list", "join", "leave");
 
         List<String> autoComplete = new ArrayList<>();

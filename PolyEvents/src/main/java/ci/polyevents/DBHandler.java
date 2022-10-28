@@ -2,10 +2,10 @@ package ci.polyevents;
 
 import org.bukkit.Bukkit;
 
+import java.sql.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.*;
 import java.util.logging.Level;
 
 public class DBHandler {
@@ -19,7 +19,7 @@ public class DBHandler {
         }
 
         try {
-            CONN = DriverManager.getConnection("jdbc:sqlite:plugins/PolyPlugins/database.db");
+            CONN = DriverManager.getConnection("jdbc:sqlite:plugins/PolyPlugins/events.db");
             Statement statement = CONN.createStatement();
 
             String sql1 = """
