@@ -1,5 +1,7 @@
 package ci.polyevents;
 
+import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,11 +18,16 @@ public final class PolyEvents extends JavaPlugin {
         eventsCommand.setExecutor(new EventExecutor());
         eventsCommand.setTabCompleter(new EventCompleter());
 
-        EventHandler.initDB();
+        DBHandler.initDB();
     }
 
     @Override
     public void onDisable() {
-        EventHandler.closeDB();
+        DBHandler.closeDB();
+    }
+
+    public static boolean errorOut(CommandSender sender, String message) {
+        sender.sendMessage(ChatColor.RED + message);
+        return true;
     }
 }

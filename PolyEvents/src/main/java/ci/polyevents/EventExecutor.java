@@ -16,22 +16,24 @@ import java.util.logging.Level;
 public class EventExecutor implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (args.length == 0) return false;
+        if (!(sender instanceof Player player))
+            return PolyEvents.errorOut(sender, "La commande \"events\" n'est accessible qu'aux joueurs");
+
+        if (args.length == 0)
+            return PolyEvents.errorOut(sender, "Tu n'as spécifié aucune sous-commande");
 
         if (args[0].equals("list")) {
             StringBuilder builder = new StringBuilder("Liste des évènements :\n");
-            ResultSet events = EventHandler.getEvents();
+            ResultSet events = DBHandler.getEvents();
 
-            if (events == null) {
-                sender.sendMessage(ChatColor.RED + "Aucun évènement en cours.");
-                return true;
-            }
+            if (events == null)
+                return PolyEvents.errorOut(sender, "Aucun évènement en cours.");
 
             try {
                 while (events.next()) {
                     builder.append(ChatColor.GREEN)
                             .append(ChatColor.BOLD)
-                            .append(events.getString("event_id"))
+                            .append(events.getString("id"))
                             .append(" : ")
                             .append(ChatColor.RESET)
                             .append(ChatColor.ITALIC)
@@ -51,26 +53,24 @@ public class EventExecutor implements CommandExecutor {
             return true;
         }
 
-        if (!(sender instanceof Player player) || args.length < 2)
-            return false;
-
         if (args[0].equals("join")) {
-            ResultSet event = EventHandler.getEvent(args[1]);
+            if (args.length < 2)
+                return PolyEvents.errorOut(sender, "Tu n'as spécifié aucun évènement à rejoindre");
 
-            if (event == null) {
-                sender.sendMessage(ChatColor.RED + "L'évènement \"" + args[1] + "\" n'existe pas");
-                return true;
-            }
+            ResultSet event = DBHandler.getEvent(args[1]);
+
+            if (event == null)
+                return PolyEvents.errorOut(sender, "L'évènement \"" + args[1] + "\" n'existe pas");
 
             try {
                 String[] coords = event.getString("location").split(" ");
                 Location loc = player.getLocation();
 
-                EventHandler.updatePlayer(
+                DBHandler.updatePlayer(
                         player.getName(),
                         player.getWorld().getName(),
                         loc.getX()+" "+loc.getY()+" "+ loc.getZ(),
-                        event.getString("event_id")
+                        event.getString("id")
                 );
 
                 player.teleport(new Location(
@@ -89,12 +89,13 @@ public class EventExecutor implements CommandExecutor {
         }
 
         if (args[0].equals("leave")) {
-            ResultSet event = EventHandler.getPlayerByEvent(args[1], player.getName());
+            if (args.length < 2)
+                return PolyEvents.errorOut(sender, "Tu n'as spécifié aucun évènement à quitter");
 
-            if (event == null) {
-                sender.sendMessage(ChatColor.RED + "Tu n'as pas rejoint l'évènement \"" + args[1] + "\"");
-                return true;
-            }
+            ResultSet event = DBHandler.getPlayerByEvent(args[1], player.getName());
+
+            if (event == null)
+                return PolyEvents.errorOut(sender, "Tu n'as pas rejoint l'évènement \"" + args[1] + "\"");
 
             try {
                 String[] coords = event.getString("location").split(" ");
@@ -106,7 +107,7 @@ public class EventExecutor implements CommandExecutor {
                         Double.parseDouble(coords[2])
                 ));
 
-                EventHandler.deletePlayer(args[1], player.getName());
+                DBHandler.deletePlayer(args[1], player.getName());
                 player.sendMessage(ChatColor.GREEN + "Tu as quitté l'évènement \"" + args[1] + "\"");
             } catch (SQLException e) {
                 Bukkit.getLogger().log(Level.SEVERE, "Error while using leave command");
@@ -115,25 +116,29 @@ public class EventExecutor implements CommandExecutor {
             return true;
         }
 
-        if (!player.isOp()) {
-            player.sendMessage(ChatColor.RED + "Tu n'as pas la permission de faire ça !");
-            return true;
-        }
+        if (!player.isOp())
+            return PolyEvents.errorOut(sender, "Tu n'as pas la permission de faire ça !");
 
         if (args[0].equals("delete")) {
-            EventHandler.deleteEvent(args[1]);
+            if (args.length < 2)
+                return PolyEvents.errorOut(sender, "Tu n'as spécifié aucun évènement à supprimer");
+
+            DBHandler.deleteEvent(args[1]);
             player.sendMessage(ChatColor.GREEN + "L'évènement \"" + args[1] + "\" a été supprimé");
             return true;
         }
 
         if (args[0].equals("create")) {
+            if (args.length < 2)
+                return PolyEvents.errorOut(sender, "Tu n'as pas spécifié le nom de l'évènement à créer");
+
             Location location = player.getLocation();
             StringBuilder description = new StringBuilder();
 
             for (int i=2; i<args.length; i++)
                 description.append(args[i]).append(" ");
 
-            EventHandler.createEvent(
+            DBHandler.createEvent(
                     args[1],
                     location.getWorld().getName(),
                     location.getX() + " " + location.getY() + " " + location.getZ(),
@@ -143,6 +148,17 @@ public class EventExecutor implements CommandExecutor {
             return true;
         }
 
-        return false;
+        String usage =
+                ChatColor.GREEN + "/events join [nom]" + ChatColor.AQUA + " - Rejoindre un évènement\n" +
+                ChatColor.GREEN + "/events leave [nom]" + ChatColor.AQUA + " - Quitter un èvement\n" +
+                ChatColor.GREEN + "/events list" + ChatColor.AQUA + " - Afficher la liste des évènements";
+
+        if (sender.isOp())
+            usage += "\n" +
+                    ChatColor.GREEN + "/events create [nom] [description]" + ChatColor.AQUA + " - Créer un évènement à sa position\n" +
+                    ChatColor.GREEN + "/events delete [nom]" + ChatColor.AQUA + " - Supprimer un évènement\n";
+
+        sender.sendMessage(usage);
+        return true;
     }
 }

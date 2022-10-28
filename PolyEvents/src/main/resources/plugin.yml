@@ -10,16 +10,4 @@ website: https://github.com/MrSpaar
 commands:
   events:
     description: Gérer des évènements
-    permission: events
-    permission-message: Tu n'as as la permission d'utiliser cette commande
-    usage: |
-      Comment utiliser la commande "events"
-      /<command> join [name] - Rejoindre un évènement
-      /<command> leave [name] - Quitter un évènement
-      /<command> list - Afficher la liste des évènements en cours
-      /<command> create [name] - Créer un évènement à ta position
-
-permissions:
-  events:
-    default: op
-    description: Accéder à la commande events
+    usage: /<command> [join/leave/list/...]

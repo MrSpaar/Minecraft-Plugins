@@ -17,25 +17,23 @@ public class EventCompleter implements TabCompleter {
     @Nullable
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (args.length == 1 && sender.isOp()) return List.of("list", "join", "leave", "create", "delete");
+        if (args.length == 1 && sender.isOp()) return List.of("list", "join", "leave", "create", "delete", "give");
         if (args.length == 1) return List.of("list", "join", "leave");
 
         List<String> autoComplete = new ArrayList<>();
 
         try {
-            ResultSet events = null;
+            ResultSet entries = switch (args[0]) {
+                case "join", "delete" -> DBHandler.getEvents();
+                case "leave" -> DBHandler.getPlayerByName(sender.getName());
+                default -> null;
+            };
 
-            if (args[0].equals("join") || args[0].equals("delete"))
-                events = EventHandler.getEvents();
-            else if (args[0].equals("leave"))
-                events = EventHandler.getPlayerByName(sender.getName());
-
-            if (events == null)
+            if (entries == null)
                 return autoComplete;
 
-            while (events.next())
-                autoComplete.add(events.getString("event_id"));
-            events.close();
+            while (entries.next())
+                autoComplete.add(entries.getString("id"));
         } catch (SQLException e) {
             Bukkit.getLogger().log(Level.WARNING, "Error while autocompleting command " + command.getName());
         }
