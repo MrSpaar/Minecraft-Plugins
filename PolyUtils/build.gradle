@@ -19,6 +19,7 @@ repositories {
 
 dependencies {
     compileOnly 'io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT'
+    implementation 'org.xerial:sqlite-jdbc:3.39.3.0'
 }
 
 def targetJavaVersion = 17

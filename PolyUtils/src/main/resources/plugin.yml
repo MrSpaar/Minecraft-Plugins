@@ -16,4 +16,4 @@ commands:
     usage: /<command>
   rezo:
     description: Commandes liées au rézo
-    usage: /<command> join [ville] - Rejoindre le groupe de sa ville
+    usage: /<command> [join/...]
