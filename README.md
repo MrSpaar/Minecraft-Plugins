@@ -9,14 +9,18 @@ Ce plugin permet de gérer une whitelist en mode offline.
 
 L'auto-complétion dépend des permissions du joueur et des joueurs déjà dans la whitelist.
 
-# 📍 [WorldSpawn](./WorldSpawn)
+# 📍 [PolyUtils](./PolyUtils)
 
-Ce plugin permet d'avoir un `/spawn` spécifique à chaque monde.
+Ce plugin ajoute des commandes utilitaires.
 
-| Commande | Arguments | Description                         |
-|----------|-----------|-------------------------------------|
-| spawn    | Aucun     | Téléporte au spawn du monde courant |
-| lobby    | Aucun     | Téléporte au spawn du monde `lobby` |
+| Commande   | Arguments         | Description                                  |
+|------------|-------------------|----------------------------------------------|
+| spawn      | Aucun             | Téléporte au spawn du monde courant          |
+| lobby      | Aucun             | Téléporte au spawn du monde `lobby`          |
+| rezo join  | \<ville>          | Rejoindre le groupe de sa ville              |
+| rezo give  | \<ville> <points> | Donner des points à une ville                |
+| rezo reset | Aucun             | Réinitialiser les points des villes          |
+| rezo sync  | Aucun             | Synchroniser les teams et la base de données |
 
 # ⚽ [PolyEvents](./PolyEvents)
 
