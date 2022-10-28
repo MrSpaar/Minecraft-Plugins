@@ -116,10 +116,7 @@ public class EventExecutor implements CommandExecutor {
             return true;
         }
 
-        if (!player.isOp())
-            return PolyEvents.errorOut(sender, "Tu n'as pas la permission de faire ça !");
-
-        if (args[0].equals("delete")) {
+        if (args[0].equals("delete") && sender.isOp()) {
             if (args.length < 2)
                 return PolyEvents.errorOut(sender, "Tu n'as spécifié aucun évènement à supprimer");
 
@@ -128,7 +125,7 @@ public class EventExecutor implements CommandExecutor {
             return true;
         }
 
-        if (args[0].equals("create")) {
+        if (args[0].equals("create") && sender.isOp()) {
             if (args.length < 2)
                 return PolyEvents.errorOut(sender, "Tu n'as pas spécifié le nom de l'évènement à créer");
 
