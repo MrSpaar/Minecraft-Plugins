@@ -29,7 +29,7 @@ public class RezoExecutor implements CommandExecutor {
             if (args.length < 2)
                 return PolyUtils.errorOut(sender, "Tu n'as spécifié aucune ville");
 
-            player.performCommand("rg tp " + args[1]);
+            player.performCommand("rg tp " + args[1].toLowerCase() + " -w survie");
         }
 
         if (args[0].equals("join")) {
