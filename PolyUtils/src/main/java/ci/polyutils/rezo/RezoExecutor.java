@@ -40,7 +40,10 @@ public class RezoExecutor implements CommandExecutor {
                 return PolyUtils.errorOut(sender, "La ville \"" + args[1] + "\" est introuvable");
 
             team.addPlayer(player);
-            server.dispatchCommand(server.getConsoleSender(), "rg addmember " + args[1] + " " + player.getName());
+            server.dispatchCommand(
+                    server.getConsoleSender(),
+                    "rg addmember " + args[1] + " " + player.getName() + " -w " + player.getWorld().getName()
+            );
 
             return PolyUtils.successOut(sender, ChatColor.GREEN + "Tu as rejoint la ville \"" + args[1] + "\"");
         }
