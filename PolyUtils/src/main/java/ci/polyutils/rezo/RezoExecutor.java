@@ -25,6 +25,13 @@ public class RezoExecutor implements CommandExecutor {
         if (args.length == 0)
             return PolyUtils.errorOut(sender, "Tu n'as spécifié aucune sous-commande");
 
+        if (args[0].equals("tp")) {
+            if (args.length < 2)
+                return PolyUtils.errorOut(sender, "Tu n'as spécifié aucune ville");
+
+            player.performCommand("rg tp " + args[1]);
+        }
+
         if (args[0].equals("join")) {
             if (args.length < 2)
                 return PolyUtils.errorOut(sender, "Tu n'as spécifié aucune ville");
@@ -99,6 +106,7 @@ public class RezoExecutor implements CommandExecutor {
                 ChatColor.GREEN + "/spawn" + ChatColor.AQUA + " - Se téléporter au spawn de son monde\n" +
                 ChatColor.GREEN + "/lobby" + ChatColor.AQUA + " - Se téléporter au lobby\n" +
                 ChatColor.GREEN + "/rezo join [ville]" + ChatColor.AQUA + " - Rejoindre le groupe de sa ville\n" +
+                ChatColor.GREEN +  "/rezo tp [ville]" + ChatColor.AQUA + " - Se téléporter au spawn d'une ville\n" +
                 ChatColor.GREEN + "/rezo leaderboard" + ChatColor.AQUA + " - Afficher le classement des villes";
 
         if (sender.isOp())

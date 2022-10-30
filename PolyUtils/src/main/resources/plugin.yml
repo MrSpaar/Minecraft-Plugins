@@ -16,4 +16,4 @@ commands:
     usage: /<command>
   rezo:
     description: Commandes liées au rézo
-    usage: /<command> [join/...]
+    usage: /<command> [join/tp/leaderboard/...]
