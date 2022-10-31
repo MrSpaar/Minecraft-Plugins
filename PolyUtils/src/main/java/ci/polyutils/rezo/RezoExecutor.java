@@ -50,7 +50,7 @@ public class RezoExecutor implements CommandExecutor {
             team.addPlayer(player);
             server.dispatchCommand(
                     server.getConsoleSender(),
-                    "rg addmember " + args[1].toLowerCase() + " " + player.getName() + " -w " + player.getWorld().getName()
+                    "rg addmember " + args[1].toLowerCase() + " " + player.getName() + " -w survie"
             );
 
             return PolyUtils.successOut(sender, ChatColor.GREEN + "Tu as rejoint la ville \"" + args[1] + "\"");
