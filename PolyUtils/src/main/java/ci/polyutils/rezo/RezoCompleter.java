@@ -23,13 +23,10 @@ public class RezoCompleter implements TabCompleter {
             return Collections.emptyList();
 
         if (args.length == 1 && sender.isOp())
-            return matchPartial(args[0], List.of("join", "tp", "leaderboard", "give", "sync", "reset"));
+            return matchPartial(args[0], List.of("tp", "leaderboard", "give", "sync", "reset"));
 
         if (args.length == 1)
-            return matchPartial(args[0], List.of("join", "tp", "leaderboard"));
-
-        if ((args[0].equals("join") && args.length == 2) || args[0].equals("tp"))
-            return matchPartial(args[1], player.getScoreboard().getTeams().stream().map(Team::getName).toList());
+            return matchPartial(args[0], List.of("tp", "leaderboard"));
 
         if (sender.isOp() && args[0].equals("give") && args.length == 2) {
             try {

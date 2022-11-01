@@ -33,28 +33,28 @@ public class RezoExecutor implements CommandExecutor {
             return true;
         }
 
-        if (args[0].equals("join")) {
-            if (args.length < 2)
-                return PolyUtils.errorOut(sender, "Tu n'as spécifié aucune ville");
-
-            Server server = player.getServer();
-
-            if (player.getScoreboard().getPlayerTeam(player) != null)
-                return PolyUtils.errorOut(sender, "Tu fais déjà partie d'une ville, contacte un modérateur en cas d'erreur ;)");
-
-            Team team = player.getScoreboard().getTeam(args[1]);
-
-            if (team == null)
-                return PolyUtils.errorOut(sender, "La ville \"" + args[1] + "\" est introuvable");
-
-            team.addPlayer(player);
-            server.dispatchCommand(
-                    server.getConsoleSender(),
-                    "rg addmember " + args[1].toLowerCase() + " " + player.getName() + " -w survie"
-            );
-
-            return PolyUtils.successOut(sender, ChatColor.GREEN + "Tu as rejoint la ville \"" + args[1] + "\"");
-        }
+//        if (args[0].equals("join")) {
+//            if (args.length < 2)
+//                return PolyUtils.errorOut(sender, "Tu n'as spécifié aucune ville");
+//
+//            Server server = player.getServer();
+//
+//            if (player.getScoreboard().getPlayerTeam(player) != null)
+//                return PolyUtils.errorOut(sender, "Tu fais déjà partie d'une ville, contacte un modérateur en cas d'erreur ;)");
+//
+//            Team team = player.getScoreboard().getTeam(args[1]);
+//
+//            if (team == null)
+//                return PolyUtils.errorOut(sender, "La ville \"" + args[1] + "\" est introuvable");
+//
+//            team.addPlayer(player);
+//            server.dispatchCommand(
+//                    server.getConsoleSender(),
+//                    "rg addmember " + args[1].toLowerCase() + " " + player.getName() + " -w survie"
+//            );
+//
+//            return PolyUtils.successOut(sender, ChatColor.GREEN + "Tu as rejoint la ville \"" + args[1] + "\"");
+//        }
 
         if (args[0].equals("leaderboard")) {
             try {
