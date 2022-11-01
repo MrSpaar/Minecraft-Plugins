@@ -5,6 +5,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Team;
 import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -22,6 +24,9 @@ public class RezoCompleter implements TabCompleter {
 
         if (args.length == 1)
             return matchPartial(args[0], List.of("tp", "leaderboard"));
+
+        if (args[0].equals("tp") && (sender instanceof Player player))
+            return matchPartial(args[1], player.getScoreboard().getTeams().stream().map(Team::getName).toList());
 
         if (sender.isOp() && args[0].equals("give") && args.length == 2) {
             try {
