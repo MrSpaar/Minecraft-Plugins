@@ -35,7 +35,7 @@ public class DBHandler {
 
     public static ResultSet getTowns() {
         try {
-            return CONN.createStatement().executeQuery("SELECT * FROM towns");
+            return CONN.createStatement().executeQuery("SELECT * FROM towns ORDER BY score DESC");
         } catch (SQLException e) {
             Bukkit.getLogger().log(Level.SEVERE, "Error getting towns");
             return null;
