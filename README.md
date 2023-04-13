@@ -11,7 +11,7 @@ L'auto-complétion dépend des permissions du joueur et des joueurs déjà dans 
 
 # 📍 [PolyUtils](./PolyUtils)
 
-Ce plugin ajoute des commandes utilitaires.
+Ce plugin ajoute des commandes utilitaires :
 
 | Commande   | Arguments         | Description                                  |
 |------------|-------------------|----------------------------------------------|
@@ -24,7 +24,7 @@ Ce plugin ajoute des commandes utilitaires.
 
 # ⚽ [PolyEvents](./PolyEvents)
 
-Ce plugin permet de créer des évènements (WIP).
+Ce plugin permet de créer des évènements :
 
 | Commande | Arguments | Description                                                       |
 |----------|-----------|-------------------------------------------------------------------|
